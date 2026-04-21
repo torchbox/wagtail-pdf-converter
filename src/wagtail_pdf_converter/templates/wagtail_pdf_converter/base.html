@@ -1,0 +1,29 @@
+{% load static wagtailuserbar wagtailcore_tags %}
+<!doctype html>
+<html lang="en" class="{% block html_class %}{% endblock %}">
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block title %}{% firstof page.seo_title page.title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+        {% block meta_tags %}{% endblock %}
+
+        {% block extra_css %}{% endblock %}
+    </head>
+
+    <body class="{% block body_class %}template-{{ page.get_verbose_name|slugify }}{% endblock %}">
+        {% block body_top %}{% endblock %}
+
+        {% wagtailuserbar %}
+
+        {% block header %}{% endblock %}
+
+        <main id="main-content" role="main">
+            {% block content %}{% endblock %}
+        </main>
+
+        {% block footer %}{% endblock %}
+
+        {% block extra_js %}{% endblock %}
+    </body>
+</html>

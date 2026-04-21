@@ -1,0 +1,195 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "wagtail-pdf-converter"
+authors = [{ name = "Torchbox", email = "hello@torchbox.com" }]
+description = "PDF to Markdown conversion"
+readme = "README.md"
+license = { file = "LICENSE" }
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.1",
+    "Framework :: Django :: 5.2",
+    "Framework :: Django :: 6.0",
+    "Framework :: Wagtail",
+    "Framework :: Wagtail :: 6",
+    "Framework :: Wagtail :: 7",
+]
+requires-python = ">=3.10"
+dynamic = ["version"]
+dependencies = [
+    # Django & Wagtail Core
+    "Django>=4.2,<7",
+    "Wagtail>=6.3,<8",
+    "django-tasks",
+
+    # AI & API Integration
+    "google-api-core>=2.28",
+    "google-genai>=1.49",
+    "tenacity>=9.1",
+
+    # PDF & Image Processing
+    "puremagic>=1.30",
+    "pymupdf>=1.26",
+    "numpy>=2.3; python_version >= '3.11'",
+    "numpy>=2.2; python_version < '3.11'",
+
+    # Markdown & Content Formatting
+    "Markdown>=3.10",
+    "nh3>=0.3",
+    "wagtail-markdown>=0.13",
+
+    # Utilities
+    "humanize>=4.14",
+]
+[project.optional-dependencies]
+# Actual testing & coverage tools
+testing = [
+    "django-environ==0.12.0",
+    "django-extensions==4.1",
+    "psycopg2-binary==2.9.11",
+    "pytest==8.4.2",
+    "pytest-cov==7.0.0",
+    "pytest-django==4.11.1",
+    "pytest-xdist==3.8.0",
+    "wagtail-factories==4.3.0",
+]
+
+# Linting & Formatting
+linting = ["pre-commit==4.3.0", "ruff==0.14.4"]
+
+# Type Checking
+type-checking = [
+    "django-stubs>=5.1.0",
+    "mypy>=1.15.0",
+    "types-beautifulsoup4>=4.12.0.20240907",
+    "types-Markdown>=3.7.0.20241204",
+]
+
+ci = ["tox==4.32.0", "tox-gh-actions==3.5.0"]
+docs = ["zensical==0.0.27"]
+
+# All local development dependencies (excludes ci)
+dev = [
+    "invoke==2.2.1",
+    "wagtail-pdf-converter[testing,linting,type-checking,docs]",
+]
+
+[project.urls]
+Home = "https://github.com/torchbox/wagtail-pdf-converter"
+
+[tool.flit.module]
+name = "wagtail_pdf_converter"
+
+[tool.flit.sdist]
+exclude = [
+    "src/wagtail_pdf_converter/testapp",
+    "tests/manage.py",
+    ".*",
+    "*.js",
+    "*.json",
+    "*.ini",
+    "*.yml",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.testproject.settings"
+django_find_project = false
+pythonpath = ["src", "."]
+log_cli = 1
+addopts = [
+    "--ds=tests.testproject.settings",
+    "--strict-markers",
+    "--reuse-db",
+    "--numprocesses=auto",
+    "-s",
+    "-vv",
+    "--cov-config=pyproject.toml",
+    "--cov",
+    "--cov-report=json",
+    "--cov-report=term-missing:skip-covered",
+]
+
+[tool.coverage.run]
+branch = true                                                                    # Measure branch coverage
+omit = ["**/migrations/*", "**/tests/*", "**/settings/*", "*urls.py", "*sgi.py"]
+source = ["src/wagtail_pdf_converter"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[tool.ruff]
+extend-exclude = ["LC_MESSAGES", "locale"]
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+    "B",      # flake8-bugbear
+    "C4",     # flake8-comprehensions
+    "DJ",     # flake8-django
+    "E",      # pycodestyle errors
+    "F",      # pyflakes
+    "I",      # isort
+    "RUF100", # unused noqa
+    "S",      # flake8-bandit
+    "UP",     # pyupgrade
+    "W",      # warning
+]
+fixable = ["C4", "E", "F", "I", "UP"]
+
+# E501: Line too long
+ignore = ["E501"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["wagtail_pdf_converter"]
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
+lines-after-imports = 2
+lines-between-types = 1
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    "S101",    # asserts allowed in tests
+    "ARG",     # unused function args (pytest fixtures)
+    "FBT",     # booleans as positional arguments (@pytest.mark.parametrize)
+    "PLR2004", # magic value used in comparison
+    "S311",    # standard pseudo-random generators are not suitable for cryptographic purposes
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.mypy]
+python_version = "3.10"
+plugins = ["mypy_django_plugin.main"]
+mypy_path = "src"
+strict = false
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_return_any = false
+
+[tool.django-stubs]
+django_settings_module = "tests.testproject.settings"

@@ -1,0 +1,23 @@
+{% load wagtailadmin_tags pdf_markdown_tags %}
+<td {% if column.classname %}class="{{ column.classname }}"{% endif %}>
+    {% if status == 'pending' %}
+        <span class="status-tag warning">Pending&hellip;</span>
+    {% elif status == 'processing' %}
+        <span class="status-tag warning">Processing&hellip;</span>
+        {% if started_at %}
+            <br><small title="{{ started_at|parse_isodatetime }}">Started: {{ started_at|parse_isodatetime|timesince }} ago</small>
+        {% endif %}
+    {% elif status == 'completed' %}
+        <a href="{{ view_url }}" target="_blank" class="button button-small button-secondary" title="View accessible version">View</a>
+        <span><a href="{{ retry_url }}" class="button button-small button-secondary button--icon">{% icon name="rotate" %} Retry</a></span>
+    {% elif status == 'exempt' %}
+        <span class="status-tag primary">Exempt</span>
+    {% elif status == 'not_applicable' %}
+        <span class="status-tag">N/A</span>
+    {% elif status == 'failed' %}
+        <span class="status-tag error" {% if error %}title="{{ error }}"{% endif %}>Conversion failed</span>
+        <a href="{{ retry_url }}" class="button button-small button-secondary button--icon">{% icon name="rotate" %} Retry</a>
+    {% else %}
+        <span class="status-tag">No accessible version</span>
+    {% endif %}
+</td>

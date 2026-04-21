@@ -1,0 +1,38 @@
+{% extends "wagtailadmin/base.html" %}
+{% load i18n wagtailadmin_tags %}
+
+{% block titletag %}{% blocktrans with title=document.title %}Editing accessible version for {{ title }}{% endblocktrans %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    {{ form.media.css }}
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    {{ form.media.js }}
+{% endblock %}
+
+{% block content %}
+    {% trans "Editing" as action_text %}
+    {% trans "accessible version" as content_type_text %}
+    {% include "wagtailadmin/shared/header.html" with title=document.title icon="doc-full" subtitle=content_type_text action_text=action_text %}
+
+    <div class="nice-padding">
+        <form action="{% url 'wagtail_pdf_converter:edit_content' document.id %}" method="POST" novalidate>
+            {% csrf_token %}
+
+            <ul class="fields">
+                {% for field in form %}
+                    <li>
+                        {% include "wagtailadmin/shared/field.html" %}
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <div class="submit">
+                <button type="submit" class="button button-longrunning" data-clicked-text="{% trans 'Saving…' %}">{% icon name="spinner" %}<em>{% trans 'Save' %}</em></button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

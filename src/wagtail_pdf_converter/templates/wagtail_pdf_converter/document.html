@@ -1,0 +1,66 @@
+{% extends base_template %}
+{% load wagtailcore_tags pdf_markdown_tags %}
+
+{% block title %}{% block page_title %}HTML version for {{ document.title }}{% endblock %}{% endblock %}
+
+{% block meta_tags %}
+    {% if not document.pdf_conversion.allow_indexing %}
+        <meta name="robots" content="noindex">
+    {% endif %}
+{% endblock %}
+
+{% block body_class %}template-document-html-version{% endblock %}
+
+{% block content %}
+    <div class="pdf-document">
+        {% block disclaimer %}
+        <aside class="pdf-warning" role="note">
+            <p>
+                This page was generated automatically from the original PDF. Please bear in mind that there may be discrepancies.
+            </p>
+        </aside>
+        {% endblock %}
+
+        <article class="pdf-content-wrapper">
+            {% block content_header %}
+            <header class="pdf-header">
+                <h1>{{ document.title }}</h1>
+
+                {% block file_info %}
+                <section class="pdf-metadata">
+                    <h2>File information</h2>
+                    <dl class="pdf-metadata-list">
+                        <div>
+                            <dt>Publication date</dt>
+                            <dd>{{ document.created_at|date:"d F Y" }}</dd>
+                        </div>
+                        <div>
+                            <dt>Format</dt>
+                            <dd>PDF, {{ document.file.size|filesizeformat }}</dd>
+                        </div>
+                    </dl>
+
+                    {% block download_original %}
+                    <div class="pdf-download">
+                        <a href="{{ document.url }}" class="button">Download original PDF</a>
+                    </div>
+                    {% endblock %}
+                </section>
+                {% endblock %}
+            </header>
+            {% endblock %}
+
+            <div class="pdf-main-content">
+                {% block pdf_content %}
+                {% if document.pdf_conversion.converted_content %}
+                    <div class="pdf-markdown-body">
+                        {{ document.pdf_conversion.converted_content|pdf_markdown }}
+                    </div>
+                {% else %}
+                    <p>No converted content available yet.</p>
+                {% endif %}
+                {% endblock %}
+            </div>
+        </article>
+    </div>
+{% endblock %}

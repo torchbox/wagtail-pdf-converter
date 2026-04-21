@@ -1,0 +1,65 @@
+{% extends "wagtailadmin/base.html" %}
+{% load wagtailadmin_tags pdf_markdown_tags %}
+
+{% block titletag %}PDF Conversion Metrics{% endblock %}
+
+{% block content %}
+    {% include "wagtailadmin/shared/header.html" with title="PDF Conversion Metrics" icon="doc-full" %}
+
+    <div class="nice-padding">
+        <div class="stats">
+            <div class="stat">
+                <h3>Average Processing Time</h3>
+                <p>{{ avg_processing_time }}s</p>
+            </div>
+            <div class="stat">
+                <h3>Total Conversions</h3>
+                <p>{{ total_conversions }}</p>
+            </div>
+            <div class="stat">
+                <h3>Success Rate</h3>
+                <p>{{ success_rate }}%</p>
+            </div>
+            <div class="stat">
+                <h3>Failed Conversions</h3>
+                <p>{{ failed_conversions }}</p>
+            </div>
+        </div>
+
+        <div class="recent-conversions">
+            <h2>Recent Conversions</h2>
+            <table class="listing">
+                <thead>
+                    <tr>
+                        <th>Document</th>
+                        <th>Processing Time</th>
+                        <th>Method</th>
+                        <th>Pages</th>
+                        <th>Images</th>
+                        <th>PDF Size</th>
+                        <th>Markdown Size</th>
+                        <th>Converted At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for doc in recent_conversions %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'wagtaildocs:edit' doc.id %}">
+                                    {{ doc.title }}
+                                </a>
+                            </td>
+                            <td>{{ doc.conversion_metrics.total_processing_time }}</td>
+                            <td>{{ doc.conversion_metrics.processing_method }}</td>
+                            <td>{{ doc.conversion_metrics.total_pages }}</td>
+                            <td>{{ doc.conversion_metrics.images_processed }}</td>
+                            <td>{{ doc.conversion_metrics.pdf_size }}</td>
+                            <td>{{ doc.conversion_metrics.markdown_output_size }}</td>
+                            <td>{{ doc.conversion_metrics.converted_at|parse_isodatetime|date:"SHORT_DATETIME_FORMAT" }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
