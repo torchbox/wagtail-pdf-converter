@@ -5,9 +5,7 @@
 [![PyPI](https://img.shields.io/pypi/v/wagtail-pdf-converter.svg)](https://pypi.org/project/wagtail-pdf-converter/)
 
 [![PDF Converter CI](https://github.com/torchbox/wagtail-pdf-converter/actions/workflows/ci.yml/badge.svg)](https://github.com/torchbox/wagtail-pdf-converter/actions/workflows/ci.yml)
-
 [![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD--3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-76877c?&logo=pre-commit&labelColor=1f2d23)](https://pre-commit.com/)
 
@@ -49,7 +47,7 @@
 
 ```sh
 python -m pip install --upgrade pip
-python -m pip install -e ".[testing,ci,docs]"
+python -m pip install -e ".[dev]"
 ```
 
 You can also use [flit](https://flit.pypa.io/en/stable/):
