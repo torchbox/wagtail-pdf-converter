@@ -4,7 +4,7 @@
 
 [![PyPI](https://img.shields.io/pypi/v/wagtail-pdf-converter.svg)](https://pypi.org/project/wagtail-pdf-converter/)
 
-[![Build status](https://github.com/torchbox/wagtail-pdf-converter/workflows/CI/badge.svg)](https://github.com/torchbox/wagtail-pdf-converter/actions)
+[![PDF Converter CI](https://github.com/torchbox/wagtail-pdf-converter/actions/workflows/ci.yml/badge.svg)](https://github.com/torchbox/wagtail-pdf-converter/actions/workflows/ci.yml)
 
 [![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD--3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
