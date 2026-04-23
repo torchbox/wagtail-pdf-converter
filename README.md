@@ -3,6 +3,9 @@
 > PDF to Markdown conversion for Wagtail, powered by AI
 
 [![PyPI](https://img.shields.io/pypi/v/wagtail-pdf-converter.svg)](https://pypi.org/project/wagtail-pdf-converter/)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/wagtail-pdf-converter.svg)
+![PyPI - Versions from Framework Classifiers](https://img.shields.io/pypi/frameworkversions/wagtail/wagtail-pdf-converter)
+![PyPI - Versions from Framework Classifiers](https://img.shields.io/pypi/frameworkversions/django/wagtail-pdf-converter)
 
 [![PDF Converter CI](https://github.com/torchbox/wagtail-pdf-converter/actions/workflows/ci.yml/badge.svg)](https://github.com/torchbox/wagtail-pdf-converter/actions/workflows/ci.yml)
 [![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD--3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
@@ -12,7 +15,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Supported versions](#supported-versions)
 - [Development](#development)
   - [Requirements](#requirements)
     - [Core](#core)
@@ -22,12 +24,6 @@
   - [pre-commit](#pre-commit)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## Supported versions
-
-- Python 3.10 - 3.14
-- Django: 4.2, 5.1, 5.2, 6.0
-- Wagtail: 6.3, 7.0, 7.1, 7.2
 
 ## Development
 
