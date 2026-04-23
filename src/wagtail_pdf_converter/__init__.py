@@ -1,7 +1,7 @@
 import re
 
 
-__version__ = "0.1.0"
+__version__ = "0.1.0rc1"
 
 
 def _get_version_tuple(version_string: str) -> tuple[int, ...]:
