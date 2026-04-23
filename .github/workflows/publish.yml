@@ -30,8 +30,9 @@ jobs:
       - name: Build
         run: python -m flit build
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v4
         with:
+          name: dist
           path: ./dist
 
   publish:
@@ -42,12 +43,15 @@ jobs:
       id-token: write # required for trusted publishing
     environment: publish
     steps:
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          packages-dir: artifact/
+          packages-dir: dist/
           print-hash: true
 
   release:
@@ -66,10 +70,10 @@ jobs:
           python-version: "3.13"
 
       - name: Download artifacts
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v4
         with:
+          name: dist
           path: dist
-          merge-multiple: true
 
       - name: Get the version
         id: get_version
