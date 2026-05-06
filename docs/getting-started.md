@@ -41,7 +41,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 urlpatterns = [
     # ...
     path("documents/", include(wagtaildocs_urls)),           # existing — keep this
-    path("documents/", include("wagtail_pdf_converter.urls")),  # add this alongside
+    path("docs/", include("wagtail_pdf_converter.urls")),  # add this alongside ("docs" here is just an example)
 ]
 ```
 
