@@ -36,7 +36,6 @@ dependencies = [
     "Django>=4.2,<7",
     "Wagtail>=6.3,<8",
     "django-tasks",
-    "django-tasks-db",
 
     # AI & API Integration
     "google-api-core>=2.28",
@@ -58,6 +57,9 @@ dependencies = [
     "humanize>=4.14",
 ]
 [project.optional-dependencies]
+# django-tasks DB backend, for the "pdf_conversion" TASKS entry in the docs
+db-backend = ["django-tasks-db"]
+
 # Actual testing & coverage tools
 testing = [
     "django-environ==0.13.0",
