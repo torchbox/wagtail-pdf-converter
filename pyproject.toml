@@ -110,6 +110,7 @@ exclude = [
 DJANGO_SETTINGS_MODULE = "tests.testproject.settings"
 django_find_project = false
 pythonpath = ["src", "."]
+testpaths = ["tests"]
 log_cli = 1
 addopts = [
     "--ds=tests.testproject.settings",
