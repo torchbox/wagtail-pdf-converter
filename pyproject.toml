@@ -36,6 +36,7 @@ dependencies = [
     "Django>=4.2,<7",
     "Wagtail>=6.3,<8",
     "django-tasks",
+    "django-tasks-db",
 
     # AI & API Integration
     "google-api-core>=2.28",
