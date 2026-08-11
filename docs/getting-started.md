@@ -23,7 +23,7 @@ INSTALLED_APPS = [
     "wagtail.documents",
     # ...
     "django_tasks",
-    "django_tasks.backends.database",  # Registers the DBTaskResult model
+    "django_tasks_db",  # Registers the DBTaskResult model
     "wagtailmarkdown",
 ]
 ```
@@ -138,7 +138,7 @@ TASKS = {
         "BACKEND": "django_tasks.backends.immediate.ImmediateBackend",
     },
     "pdf_conversion": {
-        "BACKEND": "django_tasks.backends.database.DatabaseBackend",
+        "BACKEND": "django_tasks_db.DatabaseBackend",
     },
 }
 ```
