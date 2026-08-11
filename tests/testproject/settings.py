@@ -300,10 +300,9 @@ WAGTAILMARKDOWN = {
 # TASKS: dict[str, dict[str, Any]] = {
 #     "default": {
 #         "BACKEND": "django_tasks.backends.immediate.ImmediateBackend",
-#         "ENQUEUE_ON_COMMIT": False,
 #     },
 #     "pdf_conversion": {
-#         "BACKEND": "django_tasks.backends.database.DatabaseBackend",
+#         "BACKEND": "django_tasks_db.DatabaseBackend",
 #     },
 # }
 
@@ -312,11 +311,9 @@ WAGTAILMARKDOWN = {
 TASKS: dict[str, dict[str, Any]] = {
     "default": {
         "BACKEND": "django_tasks.backends.immediate.ImmediateBackend",
-        "ENQUEUE_ON_COMMIT": False,
     },
     "pdf_conversion": {
         "BACKEND": "django_tasks.backends.immediate.ImmediateBackend",
-        "ENQUEUE_ON_COMMIT": False,
     },
 }
 
