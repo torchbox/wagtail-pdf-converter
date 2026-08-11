@@ -9,8 +9,10 @@ Install the package, wire it up, and get your first PDF converting in about 10 m
 ## 1. Install the package
 
 ```bash
-python -m pip install wagtail-pdf-converter
+python -m pip install "wagtail-pdf-converter[db-backend]"
 ```
+
+The `db-backend` extra pulls in [`django-tasks-db`](https://github.com/RealOrangeOne/django-tasks-db), which this guide uses for the `pdf_conversion` task backend in step 7. It's optional — skip it if you're supplying your own django-tasks backend.
 
 ## 2. Add to INSTALLED_APPS
 
@@ -138,7 +140,7 @@ TASKS = {
         "BACKEND": "django_tasks.backends.immediate.ImmediateBackend",
     },
     "pdf_conversion": {
-        "BACKEND": "django_tasks_db.DatabaseBackend",
+        "BACKEND": "django_tasks_db.DatabaseBackend",  # Requires the db-backend extra
     },
 }
 ```
