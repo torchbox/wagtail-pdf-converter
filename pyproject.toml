@@ -57,6 +57,9 @@ dependencies = [
     "humanize>=4.14",
 ]
 [project.optional-dependencies]
+# django-tasks DB backend, for the "pdf_conversion" TASKS entry in the docs
+db-backend = ["django-tasks-db"]
+
 # Actual testing & coverage tools
 testing = [
     "django-environ==0.13.0",

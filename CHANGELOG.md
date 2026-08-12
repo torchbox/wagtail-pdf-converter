@@ -4,6 +4,11 @@ All notable changes to this project will be documented here.
 
 ## Unreleased
 
+### Fixed
+
+- Docs and test settings referenced `django_tasks.backends.database`, removed in django-tasks 0.12. Corrected to `django_tasks_db`.
+- `django-tasks-db` is now an optional `db-backend` extra rather than a hard dependency, since it conflicts with the `django-tasks` version older supported Wagtail releases pin.
+
 ## [0.1.0rc1](https://github.com/torchbox/wagtail-pdf-converter/releases/tag/v0.1.0rc1) - 2026-04-23
 
 ### Features
