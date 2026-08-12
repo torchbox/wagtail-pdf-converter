@@ -160,5 +160,8 @@ In production, run the worker as a persistent process — systemd, a Procfile, o
 3. Watch the status move from **Pending** → **Processing** → **Completed**.
 4. Visit `/documents/<id>/html/` to see the HTML version, or call `document.get_html_url()` in code.
 
+!!! tip "Stuck on Pending?"
+    The `pdf_conversion` queue only moves once a worker is consuming it. Make sure `db_worker --backend pdf_conversion` from step 7 is still running.
+
 !!! note "Conversion time"
     Large PDFs with many pages or images can take several minutes. PDFs over 50 pages are split into chunks and processed in parallel.
