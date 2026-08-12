@@ -148,7 +148,7 @@ TASKS = {
 Then run the worker:
 
 ```bash
-python manage.py db_worker --queue-name pdf_conversion
+python manage.py db_worker --backend pdf_conversion
 ```
 
 In production, run the worker as a persistent process — systemd, a Procfile, or your platform's equivalent.
