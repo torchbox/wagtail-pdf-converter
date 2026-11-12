@@ -28,13 +28,14 @@ classifiers = [
     "Framework :: Wagtail",
     "Framework :: Wagtail :: 6",
     "Framework :: Wagtail :: 7",
+    "Framework :: Wagtail :: 8",
 ]
 requires-python = ">=3.10"
 dynamic = ["version"]
 dependencies = [
     # Django & Wagtail Core
     "Django>=4.2,<7",
-    "Wagtail>=6.3,<8",
+    "Wagtail>=6.3,<9",
     "django-tasks",
 
     # AI & API Integration
