@@ -4,6 +4,10 @@ All notable changes to this project will be documented here.
 
 ## Unreleased
 
+### Added
+
+- Wagtail 8 support: the `Wagtail` requirement is raised from `<8` to `<9`.
+
 ### Fixed
 
 - Docs and test settings referenced `django_tasks.backends.database`, removed in django-tasks 0.12. Corrected to `django_tasks_db`.
